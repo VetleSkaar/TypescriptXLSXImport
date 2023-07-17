@@ -1,5 +1,9 @@
 const xlsx = require("xlsx");
 
+interface xlsxData {
+    
+}
+
 const readExcelFile = async () => {
     try {
         const file = xlsx.readFile(`src/utils/ExampleSheet.xlsx`);
