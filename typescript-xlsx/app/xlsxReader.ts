@@ -1,8 +1,7 @@
-const xlsx = require("xlsx");
+import { IWaybill } from "@/src/utils/interfaces";
 
-interface xlsxData {
-    
-}
+const xlsx = require("xlsx");
+//option origin, specify cell as starting point
 
 const readExcelFile = async () => {
     try {
@@ -10,8 +9,8 @@ const readExcelFile = async () => {
         let data: String[] = []
         const sheets = file.SheetNames
         for (let i = 0; i < sheets.length; i++) {
-            const temp = xlsx.utils.sheet_to_json(
-                file.Sheets[file.SheetNames[i]], {defval:""})
+            const temp = xlsx.utils.sheet_to_json(file.Sheets[file.SheetNames[i]], {defval:""})
+
             temp.forEach((res: string) => {
                 data.push(res)
             })
@@ -25,7 +24,6 @@ const readExcelFile = async () => {
 }
 
 const waybillConstructor = () => {
-
 }
 
 export const getData = async () => {
