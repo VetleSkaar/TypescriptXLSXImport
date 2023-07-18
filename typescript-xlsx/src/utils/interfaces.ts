@@ -27,19 +27,19 @@ export interface Profile {
 }
 
 export interface Address {
-  street1: string;
-  street2: string;
-  city: string;
-  state: string;
-  country: string;
-  zip: string;
+  street1?: string;
+  street2?: string;
+  city?: string;
+  state?: string;
+  country?: string;
+  zip?: string;
 }
 
 export interface IFirm {
   name: string;
   address: Address;
   customerID?: number;
-  signature: Signature;
+  signature?: Signature;
 }
 
 export interface ICargo {
@@ -94,42 +94,42 @@ export enum waybillStatusEnum {
 }
 
 export interface DisplayWaybill {
-  transportFirm: string;
-  referenceNumber: string;
-  routeNumber: number;
+  transportFirmName: string;
+  referenceNumber?: number;
+  routeNumber?: number;
   receiver: IFirm;
   sender: IFirm;
   pickupTime: Date;
   deliveryTime: Date;
-  pickUpDriver?: {
-    id: ObjectId;
-    signature: Signature;
-    name: string;
-    regNumber: string;
+  pickUpDriver: {
+    id?: ObjectId;
+    signature?: Signature;
+    name?: string;
+    regNumber?: string;
   };
-  deliveryDriver?: {
-    id: ObjectId;
-    signature: Signature;
-    name: string;
-    regNumber: string;
+  deliveryDriver: {
+    id?: ObjectId;
+    signature?: Signature;
+    name?: string;
+    regNumber?: string;
   };
-  chargedTo: string;
-  transportCodes: string;
-  packageCount: number;
-  volume: number;
-  temperature: string;
-  measurements: string;
-  grossWeight: number;
-  palletCount: number;
-  palletSpaces: number;
-  dangerous: boolean;
-  reloading: boolean;
-  price: number;
-  extraCharge: string;
-  allCargo: Array<ICargo>;
-  allComments: Array<IComment>;
+  chargedTo?: chargedToEnum;
+  transportCodes?: transportCodesEnum;
+  packageCount?: number;
+  volume?: number;
+  temperature: temperatureEnum;
+  measurements?: string;
+  grossWeight?: number;
+  palletCount?: number;
+  palletSpaces?: number;
+  dangerous?: boolean;
+  reloading?: boolean;
+  price?: number;
+  extraCharge?: string;
+  allCargo?: Array<ICargo>;
+  allComments?: Array<IComment>;
   archived: boolean;
-  status?: string;
+  status: waybillStatusEnum;
   emergencyContact?: string; // admin phone nr.
 }
 
