@@ -38,7 +38,7 @@ export interface Address {
 export interface IFirm {
   name: string;
   address: Address;
-  customerID: number;
+  customerID?: number;
   signature: Signature;
 }
 
@@ -58,7 +58,7 @@ export interface IComment {
 
 export interface Signature {
   name: string;
-  time: Date;
+  time?: Date;
 }
 
 export enum chargedToEnum {
@@ -93,21 +93,25 @@ export enum waybillStatusEnum {
   'DELIVERED',
 }
 
-export interface IWaybill {
+export interface DisplayWaybill {
   transportFirm: string;
-  refrenceNumber: string;
+  referenceNumber: string;
   routeNumber: number;
   receiver: IFirm;
   sender: IFirm;
   pickupTime: Date;
   deliveryTime: Date;
-  pickUpDriver: {
+  pickUpDriver?: {
     id: ObjectId;
     signature: Signature;
+    name: string;
+    regNumber: string;
   };
-  deliveryDriver: {
+  deliveryDriver?: {
     id: ObjectId;
     signature: Signature;
+    name: string;
+    regNumber: string;
   };
   chargedTo: string;
   transportCodes: string;
@@ -125,8 +129,8 @@ export interface IWaybill {
   allCargo: Array<ICargo>;
   allComments: Array<IComment>;
   archived: boolean;
-  status: string;
-  emergencyContact: string; // admin phone nr.
+  status?: string;
+  emergencyContact?: string; // admin phone nr.
 }
 
 export interface IAdmin {
