@@ -44,7 +44,7 @@ const dataHeaders = [
     "comments"
 ]
 
-const readExcelFile = async (path: string, rangeStart: number, rangeEnd: number, sheetNumber: number) => {
+const readExcelFile = (path: string, rangeStart: number, rangeEnd: number, sheetNumber: number) => {
     try {
         const file = xlsx.readFile(path);
         let data: xlsxData[] = xlsx.utils.sheet_to_json(file.Sheets[file.SheetNames[sheetNumber-1]], {range: {s: {c: 0, r: rangeStart-1 }, e: {c: 17, r: rangeEnd-1 }},skipHeader: true, header: dataHeaders, defval:""})
@@ -79,10 +79,10 @@ const validateTemp = (val: xlsxData): temperatureEnum => {
     }
 }
 
-export const waybillConstructor = async(path: string, rangeStart: number, rangeEnd: number, sheetNumber: number, adminUser: IAdmin): Promise<DisplayWaybill[]> => {
+export const waybillConstructor = (path: string, rangeStart: number, rangeEnd: number, sheetNumber: number, adminUser: IAdmin) => {
     const waybillArr: DisplayWaybill[] = []
 
-    const data: xlsxData[] | undefined = await readExcelFile(path, rangeStart, rangeEnd, sheetNumber);
+    const data: xlsxData[] | undefined = readExcelFile(path, rangeStart, rangeEnd, sheetNumber);
     
     if (data === undefined) {
         throw new Error("can not find");
